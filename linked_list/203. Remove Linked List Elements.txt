@@ -1,0 +1,45 @@
+# Definition for singly-linked list.
+# class ListNode:
+#     def __init__(self, val=0, next=None):
+#         self.val = val
+#         self.next = next
+class Solution:
+    def removeElements(self, head: Optional[ListNode], val: int) -> Optional[ListNode]:
+
+        # while head and head.val == val:
+        #     head = head.next
+
+        # p1 = p2 = p3 = head
+
+        # while p3:
+        #     if p3.val == val:
+        #         while p3 and p3.val == val:
+        #             p3 = p3.next
+        #         p2.next = p3
+        #     if p3:
+        #         p3 = p3.next
+        #     if p2.next and p2.next.val != val:
+        #         p2 = p2.next
+        # head = p1
+        # return head
+
+        while head and head.val == val:
+            head = head.next
+
+        # Initialize pointers
+        current = head
+        prev = None
+
+        # Traverse the list
+        while current:
+            if current.val == val:
+                # Remove the node
+                if prev:
+                    prev.next = current.next
+                else:
+                    head = current.next
+            else:
+                prev = current
+            current = current.next
+
+        return head
